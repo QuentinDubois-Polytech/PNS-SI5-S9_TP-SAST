@@ -24,7 +24,7 @@ char str[517];
 FILE *badfile;
 /* Change the size of the dummy array to randomize the parameters
 for this lab. Need to use the array at least once */
-char dummy[BUF_SIZE]; memset(dummy, 0, BUF_SIZE);
+char dummy[BUF_SIZE]; memset_c(dummy, 0, BUF_SIZE);
 badfile = fopen("badfile", "r");
 fread(str, sizeof(char), 517, badfile);
 bof(str);
