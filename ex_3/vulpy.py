@@ -12,8 +12,13 @@ from mod_mfa import mod_mfa
 from mod_posts import mod_posts
 from mod_user import mod_user
 
+from dotenv import load_dotenv
+
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
+
 app = Flask('vulpy')
-app.config['SECRET_KEY'] = 'aaaaaaa'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 app.register_blueprint(mod_hello, url_prefix='/hello')
 app.register_blueprint(mod_user, url_prefix='/user')
