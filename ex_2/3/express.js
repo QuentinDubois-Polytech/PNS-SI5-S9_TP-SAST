@@ -3,7 +3,8 @@ const router = express.Router()
 
 router.get('/greeting', (req, res) => {
     const { name }  = req.query;
-    res.send('<h1> Hello :'+ name +"</h1>")
+    //res.send('<h1> Hello :'+ name +"</h1>")
+    res.render('index', '<h1> Hello :', { user_name: name}, '</h1>');
 })
 
 router.get('/greet-template', (req,res) => {

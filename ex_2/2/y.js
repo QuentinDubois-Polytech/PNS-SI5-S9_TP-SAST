@@ -7,6 +7,7 @@ router.get("/tstMe", (req, res) => {
 
     let match = r.test(req.params.id);
     res.send(match)
+    res.render('yourViewName', { match: match });
     
 });
 
