@@ -1,0 +1,130 @@
+Run started:2024-02-10 10:53:08.160627
+
+Test results:
+>> Issue: [B610:django_extra_used] Use of extra potential SQL attack vector.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.6/plugins/b610_django_extra_used.html
+   Location: ex_1/1.py:12:0
+11	
+12	User.objects.filter(username='admin').extra(dict(could_be='insecure'))
+13	User.objects.filter(username='admin').extra(select=dict(could_be='insecure'))
+
+--------------------------------------------------
+>> Issue: [B610:django_extra_used] Use of extra potential SQL attack vector.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.6/plugins/b610_django_extra_used.html
+   Location: ex_1/1.py:13:0
+12	User.objects.filter(username='admin').extra(dict(could_be='insecure'))
+13	User.objects.filter(username='admin').extra(select=dict(could_be='insecure'))
+14	query = '"username") AS "username", * FROM "auth_user" WHERE 1=1 OR "username"=? --'
+
+--------------------------------------------------
+>> Issue: [B610:django_extra_used] Use of extra potential SQL attack vector.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.6/plugins/b610_django_extra_used.html
+   Location: ex_1/1.py:15:0
+14	query = '"username") AS "username", * FROM "auth_user" WHERE 1=1 OR "username"=? --'
+15	User.objects.filter(username='admin').extra(select={'test': query})
+16	User.objects.filter(username='admin').extra(select={'test': '%secure' % 'nos'})
+
+--------------------------------------------------
+>> Issue: [B610:django_extra_used] Use of extra potential SQL attack vector.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.6/plugins/b610_django_extra_used.html
+   Location: ex_1/1.py:16:0
+15	User.objects.filter(username='admin').extra(select={'test': query})
+16	User.objects.filter(username='admin').extra(select={'test': '%secure' % 'nos'})
+17	User.objects.filter(username='admin').extra(select={'test': '{}secure'.format('nos')})
+
+--------------------------------------------------
+>> Issue: [B610:django_extra_used] Use of extra potential SQL attack vector.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.6/plugins/b610_django_extra_used.html
+   Location: ex_1/1.py:17:0
+16	User.objects.filter(username='admin').extra(select={'test': '%secure' % 'nos'})
+17	User.objects.filter(username='admin').extra(select={'test': '{}secure'.format('nos')})
+18	
+
+--------------------------------------------------
+>> Issue: [B610:django_extra_used] Use of extra potential SQL attack vector.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.6/plugins/b610_django_extra_used.html
+   Location: ex_1/1.py:20:0
+19	where_var = ['1=1) OR 1=1 AND (1=1']
+20	User.objects.filter(username='admin').extra(where=where_var)
+21	where_str = '1=1) OR 1=1 AND (1=1'
+
+--------------------------------------------------
+>> Issue: [B610:django_extra_used] Use of extra potential SQL attack vector.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.6/plugins/b610_django_extra_used.html
+   Location: ex_1/1.py:22:0
+21	where_str = '1=1) OR 1=1 AND (1=1'
+22	User.objects.filter(username='admin').extra(where=[where_str])
+23	User.objects.filter(username='admin').extra(where=['%secure' % 'nos'])
+
+--------------------------------------------------
+>> Issue: [B610:django_extra_used] Use of extra potential SQL attack vector.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.6/plugins/b610_django_extra_used.html
+   Location: ex_1/1.py:23:0
+22	User.objects.filter(username='admin').extra(where=[where_str])
+23	User.objects.filter(username='admin').extra(where=['%secure' % 'nos'])
+24	User.objects.filter(username='admin').extra(where=['{}secure'.format('no')])
+
+--------------------------------------------------
+>> Issue: [B610:django_extra_used] Use of extra potential SQL attack vector.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.6/plugins/b610_django_extra_used.html
+   Location: ex_1/1.py:24:0
+23	User.objects.filter(username='admin').extra(where=['%secure' % 'nos'])
+24	User.objects.filter(username='admin').extra(where=['{}secure'.format('no')])
+25	
+
+--------------------------------------------------
+>> Issue: [B610:django_extra_used] Use of extra potential SQL attack vector.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.6/plugins/b610_django_extra_used.html
+   Location: ex_1/1.py:27:0
+26	tables_var = ['django_content_type" WHERE "auth_user"."username"="admin']
+27	User.objects.all().extra(tables=tables_var).distinct()
+28	tables_str = 'django_content_type" WHERE "auth_user"."username"="admin'
+
+--------------------------------------------------
+>> Issue: [B610:django_extra_used] Use of extra potential SQL attack vector.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.6/plugins/b610_django_extra_used.html
+   Location: ex_1/1.py:29:0
+28	tables_str = 'django_content_type" WHERE "auth_user"."username"="admin'
+29	User.objects.all().extra(tables=[tables_str]).distinct()
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 25
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 0
+		Medium: 11
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 11
+		High: 0
+Files skipped (0):
