@@ -1,4 +1,3 @@
 <?php
- $message= $_GET["message"]."<br>" ;
- echo  $messages;
- ?>
+$message = $_GET["message"] . "<br>";
+echo  $messages;
