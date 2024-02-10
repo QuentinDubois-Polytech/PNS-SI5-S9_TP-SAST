@@ -196,6 +196,6 @@ Dans les résultats de l'analyse, nous trouvons aucune vulnérabilité détecté
 
 <!-- Explication un peu fumeuse -->
 
-Nous remarquons que la réponse de chacune des requêtes contient exactement la valeur spécifiée dans le paramètre `message` de la requête sans aucune modification, même pour les tags et paramètres dangereux. Nous pouvons ainsi détecter la vulnérabilité, de plus aucun traitement n'est également présent côté client.
+Nous remarquons que les différents réponses proposent 2 codes différents, le 200 et le 400. Dans le cas du code 400, c'est simplement que le paramètre donné est invalide et a donc causé une erreur côté serveur (notamment les espaces qui ne sont pas compréhensibles dans une url). Cependant dans le cas des codes 200, nous pouvons remarquer que la réponse aux requêtes contient exactement la valeur spécifiée dans le paramètre `message` de la requête sans aucune modification, même pour les tags et paramètres dangereux. Ce qui nous permet donc d'effectuer des attaques XSS reflected à foison. Nous pouvons ainsi aisément détecter la vulnérabilité, de plus aucun traitement n'est également présent côté client.
 
 Nous pensons que Semgrep est dans l'incapacité de détecter la vulnérabilité XSS Reflected, car il ne peut pas exécuter le code et donc relever le lien entre les deux scripts. La vulnérabilité provient de la combinaison des deux scripts, détectable uniquement en exécutant l'application.
