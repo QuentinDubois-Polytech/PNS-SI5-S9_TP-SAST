@@ -12,13 +12,15 @@ from mod_mfa import mod_mfa
 from mod_posts import mod_posts
 from mod_user import mod_user
 
-from dotenv import load_dotenv
-
-env_path = Path('.') / '.env'
-load_dotenv(dotenv_path=env_path)
+import configparser
 
 app = Flask('vulpy')
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+
+config = configparser.ConfigParser()
+config.read('secret.conf')
+section_default = config['DEFAULT']
+
+app.config['SECRET_KEY'] = section_default["SECRET_KEY"]
 
 app.register_blueprint(mod_hello, url_prefix='/hello')
 app.register_blueprint(mod_user, url_prefix='/user')
@@ -57,4 +59,4 @@ def add_csp_headers(response):
     return response
 
 
-app.run(debug=False, host='127.0.1.1', port=5000, extra_files='csp.txt')
+app.run(debug=True, host='127.0.1.1', port=5000, extra_files='csp.txt')
