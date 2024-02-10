@@ -11,7 +11,7 @@ $messages=file_get_contents($file);
 	show.innerHTML= xmlhttp.responseText;
      } ; 
      var input=document.getElementById("message").value;
-     var url = "http://localhost:8080/tp2/ressources/guestbookleavemessage.php?message="+input;
+     var url = "http://localhost/php/guestbookleavemessage.php?message="+input;
      var xmlhttp = new XMLHttpRequest();	    
      xmlhttp.open('GET',url, true);
      xmlhttp.onreadystatechange = callback;
